@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pdftotext \"c:/Users/hspcadmin/Documents/_QINGXU/stu/本地文件/Python基础学习.pdf\" -)",
+      "Bash(echo '- [每章学习自动化流程]\\(per-chapter-workflow.md\\) — 学完一章后自动更新错题簿+笔记+询问巩固' >> \"c:/Users/hspcadmin/.claude/projects/c--Users-hspcadmin-Documents--QINGXU-stu/memory/MEMORY.md\")",
+      "Bash(git init *)",
+      "Bash(git branch *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(gh auth *)",
+      "Read(//c/Users/hspcadmin/Documents/_QINGXU/**)",
+      "Bash(mv stu *)",
+      "Bash(cmd //c \"ren C:\\\\Users\\\\hspcadmin\\\\Documents\\\\_QINGXU\\\\stu AIStuPython\")",
+      "Bash(mkdir -p \"c:/Users/hspcadmin/Documents/_QINGXU/AIStuPython\")",
+      "Bash(cp -r \"c:/Users/hspcadmin/Documents/_QINGXU/stu/\"* \"c:/Users/hspcadmin/Documents/_QINGXU/AIStuPython/\")",
+      "Bash(cp -r \"c:/Users/hspcadmin/Documents/_QINGXU/stu/.git\"* \"c:/Users/hspcadmin/Documents/_QINGXU/AIStuPython/\")",
+      "Bash(git config *)",
+      "Bash(env)",
+      "Read(//c/Users/hspcadmin/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\hspcadmin\\.claude\\projects\\c--Users-hspcadmin-Documents--QINGXU-stu\\memory"
+    ]
+  }
+}

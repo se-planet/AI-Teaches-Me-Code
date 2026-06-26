@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/c/Users/hspcadmin/AppData/Local/Programs/Python/Python313/python.exe \"c:/Users/hspcadmin/Documents/_QINGXU/stu/本地文件/convert_pdf_to_md.py\")",
+      "Bash(grep -n \"^#\\\\|^\\\\`\\\\`\\\\`python\\\\|^## \\\\|^### \" \"c:/Users/hspcadmin/Documents/_QINGXU/stu/本地文件/Python基础学习.md\")",
+      "Bash(ssh-keygen -t ed25519 -C \"AIStuPython\" -f ~/.ssh/id_ed25519 -N \"\")",
+      "Bash(\"/c/Program Files/GitHub *)",
+      "Bash(\"/c/Program Files/GitHub CLI/gh\" auth login --hostname github.com --git-protocol ssh --web)",
+      "Bash(curl -s --connect-timeout 5 https://api.github.com)"
+    ]
+  }
+}
