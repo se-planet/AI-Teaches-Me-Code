@@ -194,8 +194,22 @@ def practice_merge_sorted_arrays(arr1, arr2):
     输出: [1,2,3,4,5,6]
     提示：用两个指针分别指向两个数组
     """
-    # TODO: 你的代码写在这里
-    pass
+    # 双指针合并：两个手指分别指两个数组，每次取小的
+    result = []
+    i, j = 0, 0  # i 指向 arr1，j 指向 arr2
+
+    while i < len(arr1) and j < len(arr2):
+        if arr1[i] < arr2[j]:
+            result.append(arr1[i])
+            i += 1
+        else:
+            result.append(arr2[j])
+            j += 1
+
+    # 把剩下没比完的直接追加（其中一个已经空了）
+    result.extend(arr1[i:])  # arr1 剩下的
+    result.extend(arr2[j:])  # arr2 剩下的
+    return result
 
 
 def practice_max_subarray(nums):
@@ -206,7 +220,15 @@ def practice_max_subarray(nums):
     提示：动态规划思想，但可以先尝试暴力遍历
     """
     # TODO: 你的代码写在这里
-    pass
+    max_num = float("-inf")
+    for start in range(len(nums)):
+        for end in range(start, len(nums)):
+            sub = nums[start: end + 1]
+            total = sum(sub)
+            if total > max_num:
+                max_num = total
+    return max_num
+        
 
 
 # ============================================================
