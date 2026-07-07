@@ -177,6 +177,17 @@ def reverse_list(head):
         cur = nxt         # cur 前进一步
     return prev           # prev 成为了新的头
 
+def reverse_list2(head):
+    prev = None
+    cur = head
+    while cur:
+        nxt = cur.next
+        cur.next = prev
+        prev = cur
+        cur = nxt
+    return prev
+
+
 head = make_list([1, 2, 3, 4, 5])
 reversed_head = reverse_list(head)
 print(f"反转后: {traverse(reversed_head)}")  # [5, 4, 3, 2, 1]
@@ -192,6 +203,13 @@ def find_middle(head):
     while fast and fast.next:
         slow = slow.next       # 慢的一步
         fast = fast.next.next  # 快的两步
+    return slow.val if slow else None
+
+def find_middle2(head):
+    slow = fast = head
+    while fast and fast.next:
+        slow = head.next
+        fast = head.next.next
     return slow.val if slow else None
 
 head = make_list([1, 2, 3, 4, 5])
@@ -221,6 +239,20 @@ def merge_two_lists(l1, l2):
 
     cur.next = l1 or l2    # 剩下没比完的直接接上
     return dummy.next      # 返回哑节点后面的真正头节点
+
+def merge_two_list2(l1, l2):
+    dummy = ListNode(0)
+    cur = dummy
+    while l1 and l2:
+        if l1.next < l2.next:
+            cur.next = l1
+            l1 = l1.next
+        else:
+            l2.next = l2
+            l2 = l2.next
+        cur = cur.next
+    cur.next = l1 or l2
+    return dummy.next
 
 l1 = make_list([1, 3, 5])
 l2 = make_list([2, 4, 6])
@@ -272,7 +304,14 @@ def practice_reverse_list(head):
     提示：三个指针 prev, cur, nxt
     """
     # TODO: 你的代码
-    pass
+    prev = None
+    cur = head
+    while cur:
+        nxt = cur.next      # ① 先记后路！
+        cur.next = prev     # ② 箭头调头
+        prev = cur          # ③ prev 前移
+        cur = nxt           # ④ cur 前移
+    return prev             # 别忘了返回新的头
 
 
 def practice_remove_nth_from_end(head, n):
@@ -285,7 +324,18 @@ def practice_remove_nth_from_end(head, n):
     提示：快指针先走 n 步，然后快慢一起走，慢的就停在了要删的位置前
     """
     # TODO: 你的代码
-    pass
+    fast = slow = head
+    for _ in range(n):
+        fast = fast.next
+    # 特殊情况：要删的是头节点（n == 链表长度）
+    if not fast:
+        return head.next
+    while fast.next:
+        fast = fast.next
+        slow = slow.next
+    slow.next = slow.next.next
+    return head
+
 
 
 # ============================================================
