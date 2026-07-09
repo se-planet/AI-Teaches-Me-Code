@@ -257,3 +257,23 @@ if __name__ == "__main__":
     print("✅ 第1课「数组」学习完成！")
     print("下一步：完成两道练习题 → 去LeetCode刷Easy题 → 进入链表")
     print("=" * 60)
+
+    print("\n📝 练习题测试：")
+
+    # 测试合并有序数组
+    result = practice_merge_sorted_arrays([1, 3, 5], [2, 4, 6])
+    if result == [1, 2, 3, 4, 5, 6]:
+        print(f"  ✅ 练习题1 合并有序数组: {result}")
+    elif result is None:
+        print("  ⚠️  练习题1 还没写（pass了）")
+    else:
+        print(f"  ❌ 练习题1 预期 [1,2,3,4,5,6]，实际 {result}")
+
+    # 测试最大子数组和
+    result = practice_max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+    if result == 6:
+        print(f"  ✅ 练习题2 最大子数组和: {result}")
+    elif result is None:
+        print("  ⚠️  练习题2 还没写（pass了）")
+    else:
+        print(f"  ❌ 练习题2 预期 6，实际 {result}")
