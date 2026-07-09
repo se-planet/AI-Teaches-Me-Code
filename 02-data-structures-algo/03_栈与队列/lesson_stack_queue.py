@@ -227,7 +227,15 @@ def practice_valid_parentheses(s):
     输入: "(]"      → False
     """
     # TODO: 你的代码
-    pass
+    stack = []
+    parts = {'}': '{', ']': '[', ')': '('}
+    for ch in s:
+        if ch in parts:
+            if not stack or stack.pop() != parts[ch]:
+                return False
+        else:
+            stack.append(ch)
+    return not stack
 
 
 def practice_min_stack():
@@ -238,7 +246,30 @@ def practice_min_stack():
     提示：用两个栈，一个存数据，一个存「当前最小值」
     """
     # TODO: 你的代码
-    pass
+    class MinStack:
+        def __init__(self):
+            self.stack = []
+            self.min_stack = []
+        
+        def push(self, x):
+            self.stack.append(x)
+            if not self.min_stack:
+                self.min_stack.append(x)
+            else:
+                self.min_stack.append(min(x, self.min_stack[-1]))
+        
+        def pop(self):
+            self.min_stack.pop()
+            return self.stack.pop()
+        
+        def top(self):
+            return self.stack[-1]
+        
+        def getMin(self):
+            return self.min_stack[-1]
+        
+    return MinStack()
+
 
 
 # ============================================================
@@ -284,3 +315,25 @@ if __name__ == "__main__":
         print("  ✅ 练习题1 有效括号: False (输入 '(]')")
     elif result is True:
         print("  ❌ 练习题1 预期 False，实际 True")
+
+    # 测试最小栈
+    result = practice_min_stack()
+    if result:
+        try:
+            result.push(-2)
+            result.push(0)
+            result.push(-3)
+            min_val = result.getMin()
+            if min_val == -3:
+                print(f"  ✅ 练习题2 最小栈: getMin={min_val}")
+                result.pop()
+                if result.getMin() == -2:
+                    print(f"  ✅ 练习题2 最小栈: pop后getMin=-2")
+                else:
+                    print(f"  ❌ 练习题2 pop后getMin预期-2")
+            else:
+                print(f"  ❌ 练习题2 getMin预期-3，实际{min_val}")
+        except Exception as e:
+            print(f"  ❌ 练习题2 出错: {e}")
+    else:
+        print("  ⚠️  练习题2 还没写（pass了）")
