@@ -166,7 +166,12 @@ def practice_contains_duplicate(nums):
     提示：用 set 记录见过的元素
     """
     # TODO: 你的代码
-    pass
+    seen = set()
+    for num in nums:
+        if num in seen:
+            return True      # 找到了重复！
+        seen.add(num)
+    return False             # 走完没找到
 
 
 def practice_is_anagram(s, t):
@@ -176,8 +181,16 @@ def practice_is_anagram(s, t):
     输入: s="rat", t="car" → False
     提示：统计两个字符串每个字符的出现次数，比较是否相同
     """
-    # TODO: 你的代码
-    pass
+    if len(s) != len(t):
+        return False
+
+    count_s, count_t = {}, {}
+    for ch in s:
+        count_s[ch] = count_s.get(ch, 0) + 1
+    for ch in t:
+        count_t[ch] = count_t.get(ch, 0) + 1
+
+    return count_s == count_t
 
 
 # ============================================================
