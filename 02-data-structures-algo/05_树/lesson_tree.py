@@ -230,6 +230,12 @@ def solve(root):
     return 处理(root, left, right)  # 4. 合并结果
 """
 
+def solve(root):
+    if not root:
+        return 0
+    
+    left = solve(root.left)
+    right = solve(root.right)
 
 # ============================================================
 # 八、练习题
@@ -241,7 +247,12 @@ def practice_max_depth(root):
     提示：就是 max_depth 函数，背下来
     """
     # TODO: 你的代码
-    pass
+    if not root:
+        return 0
+    left = practice_max_depth(root.left)
+    right = practice_max_depth(root.right)
+    return 1 + max(left, right)
+
 
 
 def practice_is_same_tree(p, q):
@@ -252,7 +263,13 @@ def practice_is_same_tree(p, q):
     提示：同时递归两棵树，每一步比较 p.val == q.val
     """
     # TODO: 你的代码
-    pass
+    if not p and not q:
+        return True
+    if not p or not q:
+        return False
+    if p.val != q.val:
+        return False
+    return practice_is_same_tree(p.left, q.left) and practice_is_same_tree(p.right, q.right)
 
 
 # ============================================================
