@@ -219,7 +219,28 @@ def practice_num_islands(grid):
     提示：就是上面的 num_islands 函数，自己手写一遍
     """
     # TODO: 你的代码
-    pass
+    if not grid:
+        return 0
+
+    rows, cols = len(grid), len(grid[0])
+    count = 0
+
+    def dfs(r, c):
+        if r < 0 or c < 0 or r >= rows or c >= cols or grid[r][c] == '0':
+            return
+        grid[r][c] = '0'
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c + 1)
+        dfs(r, c - 1)
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == '1':
+                count += 1
+                dfs(r, c)
+
+    return count
 
 
 def practice_flood_fill(image, sr, sc, color):
@@ -232,7 +253,22 @@ def practice_flood_fill(image, sr, sc, color):
     提示：跟岛屿一样的 DFS，只是把染色条件从 '1' 改成 '跟起点同色'
     """
     # TODO: 你的代码
-    pass
+    rows, cols = len(image), len(image[0])
+    old_color = image[sr][sc]
+    if old_color == color:
+        return image
+
+    def dfs(r, c):
+        if r < 0 or c < 0 or r >= rows or c >= cols or image[r][c] != old_color:
+            return
+        image[r][c] = color
+        dfs(r + 1, c)
+        dfs(r - 1, c)
+        dfs(r, c + 1)
+        dfs(r, c - 1)
+
+    dfs(sr, sc)
+    return image
 
 
 # ============================================================
@@ -271,3 +307,12 @@ if __name__ == "__main__":
         print("  ⚠️  练习题1 还没写")
     else:
         print(f"  ❌ 练习题1 预期 3，实际 {result}")
+
+    result = practice_flood_fill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2)
+    expected = [[2,2,2],[2,2,0],[2,0,1]]
+    if result == expected:
+        print("  ✅ 练习题2 图像渲染: 正确")
+    elif result is None:
+        print("  ⚠️  练习题2 还没写")
+    else:
+        print(f"  ❌ 练习题2 预期 {expected}，实际 {result}")
