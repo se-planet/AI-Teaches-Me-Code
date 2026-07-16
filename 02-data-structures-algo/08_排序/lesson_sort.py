@@ -230,7 +230,14 @@ def practice_quick_sort(arr):
     提示：就是上面的 quick_sort 函数，背下来
     """
     # TODO: 你的代码
-    pass
+    
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x <= pivot]
+    right = [x for x in arr[1:] if x > pivot]
+
+    return practice_quick_sort(left) + [pivot] + practice_quick_sort(right)
 
 
 def practice_merge_sort(arr):
@@ -239,7 +246,29 @@ def practice_merge_sort(arr):
     提示：就是上面的 merge_sort + merge，背下来
     """
     # TODO: 你的代码
-    pass
+    def merge_sort(arr):
+        if len(arr) <= 1:
+            return arr
+        mid = len(arr) // 2
+        left = merge_sort(arr[:mid])
+        right = merge_sort(arr[mid:])
+        return merge(left, right)
+
+    def merge(left, right):
+        result = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+
+    return merge_sort(arr)
 
 
 # ============================================================
