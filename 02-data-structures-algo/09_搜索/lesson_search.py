@@ -164,7 +164,17 @@ def practice_binary_search(arr, target):
     输入: arr=[1,5,8,12,20], target=7 → 输出: -1
     """
     # TODO: 你的代码
-    pass
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+
 
 
 def practice_search_insert(nums, target):
@@ -176,7 +186,16 @@ def practice_search_insert(nums, target):
     提示：就是 lower_bound
     """
     # TODO: 你的代码
-    pass
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return left
 
 
 # ============================================================
